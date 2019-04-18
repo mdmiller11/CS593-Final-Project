@@ -11,12 +11,19 @@ print(df.shape)
 #countNaN = len(df) - df.count() #count of NaN values = count of all values (len(df)) - count of non-NaN values (df.count)
 
 #print(countNaN)
+df.dropna(axis = 1, thresh = 1000, inplace=True)
+print(df.shape)     
 for i in df.columns:
-    if df[i].isnull().sum(axis = 0) > 1000:
+    if df[i].isnull().sum(axis = 0) > 500:
         df = df.drop([i],axis = 1)
 print(df.shape)     
-for i in df.rows:
-    if df[i].isnull().sum(axis = 1) > 500:
-        df = df.drop([i],axis = 0)
+
+df.dropna(axis = 0, how='all', inplace=True)
 
 print(df.shape)
+
+df.dropna(axis = 0, how='any', inplace=True)
+
+print(df.shape)
+
+###     Present as soon as 5/2, as late as 5/9  ###
