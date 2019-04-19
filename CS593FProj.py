@@ -11,7 +11,7 @@ print(df.shape)
 #countNaN = len(df) - df.count() #count of NaN values = count of all values (len(df)) - count of non-NaN values (df.count)
 
 #print(countNaN)
-df.dropna(axis = 1, thresh = 1000, inplace=True)
+#df.dropna(axis = 1, thresh = 1000, inplace=True)
 print(df.shape)     
 for i in df.columns:
     if df[i].isnull().sum(axis = 0) > 500:
