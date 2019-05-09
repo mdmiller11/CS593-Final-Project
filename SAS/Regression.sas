@@ -83,15 +83,9 @@ PROC REG DATA=DATA2z PLOTS(MAXPOINTS=NONE);
 RUN;
 QUIT;
 
-*5.Multicollinearity;
+*5.Multicollinearity & Autocorrelation;
 PROC REG DATA=DATA2z;
-    MODEL MD_EARN_WNE_P10 = &xlist / VIF;
-RUN;
-QUIT;
-
-*6.Autocorrelation;
-PROC REG DATA=DATA2z;
-    MODEL MD_EARN_WNE_P10 = &xlist / DW;
+    MODEL MD_EARN_WNE_P10 = &xlist / VIF DW;
 RUN;
 QUIT;
 
@@ -142,5 +136,3 @@ PROC REG DATA=PCA_DATA2z;
     MODEL MD_EARN_WNE_P10 = Prin1 -- Prin18;
     OUTPUT OUT=REG_PCA_DATA2z_OUT;
 QUIT;
-
-

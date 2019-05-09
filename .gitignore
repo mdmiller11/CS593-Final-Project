@@ -1,10 +1,7 @@
 
 .idea/
-SAS_Results/
 .ipynb_checkpoints/
 CollegeScorecard_Raw_Data/
-test.ipynb
-CS593Fproj-Copy1.ipynb
 ~$CollegeScorecardDataDictionary.xlsx
 CollegeScorecardDataDictionary.xlsx
 ~$CollegeScorecardDataDictionary_Updated.xlsx
