@@ -14,17 +14,18 @@ RUN;
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 *Check LR Assumptions;
+*Reference:
+    - https://www.listendata.com/2015/03/checking-assumptions-of-regression.html
+    - https://stats.idre.ucla.edu/sas/dae/robust-regression/
+    - https://www.listendata.com/2015/08/checking-homoscedasticity-with-sas.html
+    - https://www.statisticssolutions.com/assumptions-of-multiple-linear-regression/;
 *1.Outliers;
 PROC REG DATA=DATA1z;
     MODEL MD_EARN_WNE_P10 = &num_Var &cat_Var / STB CLB;
     OUTPUT OUT=stdres P=predict STUDENT=res R=resid RSTUDENT=r H=lev COOKD=cookd DFFITS=dffit;
 RUN;
 QUIT;
-PROC PRINT DATA=stdres;
-    VAR r MD_EARN_WNE_P10 &num_Var &cat_Var;
-    WHERE ABS(r)>=3;
-RUN;
-*Leverage - Residual squared plot;
+*Leverage - Residual Squared plot;
 DATA stdres; SET stdres;
     resid_sq = res*res;
 RUN;
@@ -100,7 +101,7 @@ QUIT;
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 *Simple Linear Regression;
-PROC REG DATA=DATA2z;
+PROC REG DATA=DATA2z PLOTS(MAXPOINTS=NONE);
     MODEL MD_EARN_WNE_P10 = &xlist
                / SELECTION=NONE;
     OUTPUT OUT=REG_DATA2zOUT_01
